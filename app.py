@@ -4,7 +4,7 @@ import twitter
 import plotly.express as px
 import dash
 from dash.dependencies import Input, Output, State
-from dash import dcc, html
+from dash import dcc, html, dash_table
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 
@@ -81,19 +81,22 @@ def hover_event(hover, tweet_dict):
         hover_data = df[df['account'].eq(name)].iloc[idx]
         url = f"https://twitter.com/{hover_data['account']}/status/{hover_data['id']}"
         embed = requests.get(f'https://publish.twitter.com/oembed?url={url}').json()
-        return html.Iframe(srcDoc=embed['html'], style={'width': '100%',
-                                                        'height': '90%',
-                                                        'margin-top': '10px',
-                                                        'margin-left': '10px'})
+        iframe = html.Iframe(srcDoc=embed['html'], style={'width': '100%',
+                                                          'height': '90%',
+                                                          'margin-top': '10px',
+                                                          'margin-left': '10px'})
+        return iframe
+
     if tweet_dict:
         df = pd.DataFrame(tweet_dict)
         hover_data = df.iloc[0]
         url = f"https://twitter.com/{hover_data['account']}/status/{hover_data['id']}"
         embed = requests.get(f'https://publish.twitter.com/oembed?url={url}').json()
-        return html.Iframe(srcDoc=embed['html'], style={'width': '100%',
-                                                        'height': '90%',
-                                                        'margin-top': '10px',
-                                                        'margin-left': '10px'})
+        iframe = html.Iframe(srcDoc=embed['html'], style={'width': '100%',
+                                                          'height': '90%',
+                                                          'margin-top': '10px',
+                                                          'margin-left': '10px'})
+        return iframe
 
 
 if __name__ == '__main__':
