@@ -2,7 +2,7 @@
 Dash web app that utilizes the Twitter API to pull public tweet data based on the username and returns the tweet on hover.
 Users will need to set their Twitter API token as the following environment variable: `TWITTERTOKEN`
 
-![example.gif](image_files/example.gif)
+![example_v2.gif](image_files%2Fexample_v2.gif)
 
 ## Usernames
 comma-separated Twitter usernames without a space: google,amazon
